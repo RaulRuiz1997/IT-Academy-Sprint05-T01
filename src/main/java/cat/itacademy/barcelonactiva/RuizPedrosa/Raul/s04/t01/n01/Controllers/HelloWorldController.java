@@ -39,12 +39,7 @@ public class HelloWorldController {
     @GetMapping("/HelloWorld2/{nom}")
     public String saluda2(@PathVariable Optional<String> nom) {
 
-        if (nom.isPresent()) {
-            return "Hola, " + nom + ". Estàs executant un projecte Maven";
-        } else {
-            return "nom buit!";
-        }
-
+        return nom.map(s -> "Hola, " + s + ". Estàs executant un projecte Maven").orElseGet(() -> "nom buit!");
 
     }
 
